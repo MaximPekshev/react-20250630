@@ -1,0 +1,13 @@
+header {
+    padding: 20px;
+    margin: 20px 0px;
+    background-color: #969696;
+    text-align: center;
+}
+
+footer {
+    height: 150px;;
+    padding: 20px;
+    margin: 20px 0px;
+    background-color: #969696;
+}

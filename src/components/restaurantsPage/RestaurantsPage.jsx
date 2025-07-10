@@ -1,21 +1,13 @@
 import { Restaurant } from "../restaurant/Restaurant";
-import { MenuButtons } from "../menuButtons/MenuButtons";
+import { RestaurantsTabs } from "../RestaurantsTabs/RestaurantsTabs";
 import { useState, useEffect } from 'react';
 export const RestaurantsPage = ({ restaurants }) => {
-    const [activeRestaurant, setActiveRestaurant] = useState("Dishoom");
-    const [activeRestaurantData, setActiveRestaurantData] = useState(restaurants[0]);
-
-    useEffect(() => {
-        const found = restaurants?.find(restaurant => restaurant.name === activeRestaurant)
-        setActiveRestaurantData(found)
-    }, [activeRestaurant]);
+    const [activeRestaurant, setActiveRestaurant] = useState("a757a0e9-03c1-4a2a-b384-8ac21dbe2fb2");
+    const activeRestaurantData = restaurants?.find(restaurant => restaurant.id === activeRestaurant)
     
-    const handleClick = (title) => {
-        setActiveRestaurant(title)
-    };
     return (
         <>
-            <MenuButtons restaurants={restaurants} onClick={handleClick} />
+            <RestaurantsTabs restaurants={restaurants} onClick={setActiveRestaurant} />
             {activeRestaurantData && 
                 <Restaurant restaurant={activeRestaurantData} />
             }

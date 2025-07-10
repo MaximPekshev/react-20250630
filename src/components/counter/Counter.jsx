@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './Counter.css';
 export const Counter = () => {
     const [value, setValue] = useState(0);
     const LIMIT = 5;

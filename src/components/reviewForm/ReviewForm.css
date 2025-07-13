@@ -1,0 +1,28 @@
+.review-form {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.review-form-data {
+    width: 100%;
+}
+.review-form input, textarea {
+    width: 100%;
+    max-width: 285px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.review-form .rating {
+    width: 100%;
+    display: flex;
+}
+.review-form .rating button {
+    margin: 0px 10px;
+}
+.review-form-buttons {
+    padding: 10px 0px;
+    display: flex;
+    justify-content: end;
+}

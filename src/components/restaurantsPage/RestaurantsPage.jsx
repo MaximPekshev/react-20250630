@@ -1,16 +1,24 @@
 import { Restaurant } from "../restaurant/Restaurant";
-import { RestaurantsTabs } from "../RestaurantsTabs/RestaurantsTabs";
-import { useState, useEffect } from 'react';
+import { RestaurantsTabs } from "../restaurantsTabs/RestaurantsTabs";
+import { ReviewForm } from "../reviewForm/ReviewForm";
+import { useState } from 'react';
 export const RestaurantsPage = ({ restaurants }) => {
-    const [activeRestaurant, setActiveRestaurant] = useState("a757a0e9-03c1-4a2a-b384-8ac21dbe2fb2");
-    const activeRestaurantData = restaurants?.find(restaurant => restaurant.id === activeRestaurant)
+    const [activeRestaurantId, setActiveRestaurant] = useState(restaurants[0].id);
+    const activeRestaurant = restaurants?.find(restaurant => restaurant.id === activeRestaurantId)
     
     return (
-        <>
-            <RestaurantsTabs restaurants={restaurants} onClick={setActiveRestaurant} />
-            {activeRestaurantData && 
-                <Restaurant restaurant={activeRestaurantData} />
-            }
+        <>  
+            <RestaurantsTabs 
+                restaurants={restaurants} 
+                onClick={setActiveRestaurant} 
+                activeRestaurantId={activeRestaurantId}
+            />
+            <Restaurant 
+                name={activeRestaurant.name}
+                menu={activeRestaurant.menu}
+                reviews={activeRestaurant.reviews}
+            />
+            <ReviewForm />
         </>
     );
 }

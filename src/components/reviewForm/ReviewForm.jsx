@@ -52,7 +52,10 @@ export const ReviewForm = () => {
     };
 
     return (
-        <form className="review-form">
+        <form 
+            className="review-form"
+            onSubmit={(event) => event.preventDefault()}
+        >
             <div className="review-form-data">
                 <div>Name</div>
                 <input 
@@ -90,9 +93,6 @@ export const ReviewForm = () => {
                     <button 
                         type="button"
                         disabled
-                        onClick={(event) => {
-                            event.preventDefault();
-                        }}
                     >
                         Submit
                     </button>

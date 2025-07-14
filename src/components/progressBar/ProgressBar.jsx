@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 export const ProgressBar = () => {
     const [scrollSrogress, setScrollProgress] = useState(0);
 
-    const handleScroll = () => {
-        const scrollTop = document.documentElement.scrollTop;
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const progress = (scrollTop / windowHeight) * 100;
-        setScrollProgress(progress);
-    };
-
     useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / windowHeight) * 100;
+            setScrollProgress(progress);
+        };
+
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -28,7 +28,7 @@ export const ProgressBar = () => {
 
     return (
         <div className="progress-bar">
-            <div className="progress-bar-fill" style={barStyle}></div>
+            <div className="progress-bar-fill" style={barStyle} />
         </div>
     );
 }

@@ -1,27 +1,25 @@
-.review-form {
+.reviewForm {
     display: flex;
     align-items: center;
-    max-width: 300px;
+    max-width: 350px;
     padding: 15px;
     border: 1px solid #ccc;
 }
-.review-form-data {
+.reviewFormData {
     width: 100%;
 }
-.review-form input, textarea {
+.reviewForm input, textarea {
     width: 100%;
     max-width: 285px;
     padding: 5px;
     margin-bottom: 10px;
 }
-.review-form .rating {
+.reviewForm .rating {
     width: 100%;
     display: flex;
+    align-items: center;
 }
-.review-form .rating button {
-    margin: 0px 10px;
-}
-.review-form-buttons {
+.reviewFormButtons {
     padding: 10px 0px;
     display: flex;
     justify-content: end;

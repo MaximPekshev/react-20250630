@@ -1,10 +1,22 @@
-
-export const Counter = ({ value, increment, decrement }) => { 
+import styles from "./counter.module.css";
+import classNames from "classnames";
+import { Button } from "../button/Button";
+export const Counter = ({min=0, max=5,  value, increment, decrement }) => { 
     return (
         <>
-            <button className='counter-button' onClick={decrement}>-</button>
+            <Button
+                onClick={decrement} 
+                children={"-"}
+                isDisabled={value <= min}
+                sizeViewVariant="xs"
+            />
             <span>{value}</span>
-            <button className='counter-button' onClick={increment}>+</button>
+            <Button
+                onClick={increment} 
+                children={"+"}
+                isDisabled={value >= max}
+                sizeViewVariant="xs"
+            />
         </>
     );
 }

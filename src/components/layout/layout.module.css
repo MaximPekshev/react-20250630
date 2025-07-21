@@ -1,11 +1,16 @@
-header {
+.header {
     padding: 20px;
     margin: 20px 0px;
     background-color: #969696;
     text-align: center;
 }
 
-footer {
+.body {
+    padding: 20px;
+    margin: 20px 0px;
+}
+
+.footer {
     height: 1024px;;
     padding: 20px;
     margin: 20px 0px;

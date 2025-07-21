@@ -1,0 +1,12 @@
+.reviewsList li {
+    margin-bottom: 10px;
+}
+
+.reviews {
+    padding: 20px;
+    border: solid 1px #ccc;
+    border-radius: 8px;
+    max-width: 350px;
+    margin-bottom: 20px;
+    background-color: rgb(233, 233, 233);
+}

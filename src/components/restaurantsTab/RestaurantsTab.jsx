@@ -1,12 +1,12 @@
-import './RestaurantsTab.css'
+import { Button } from "../button/Button";
 export const RestaurantsTab = ({ id, title, isActive, onClick }) => {
     return (
-        <button 
+        <Button 
             disabled={isActive}
-            className="menu-button" 
+            children={title}
+            sizeViewVariant="l"
+            isDisabled={isActive}
             onClick={() => onClick(id)}
-        >
-            {title}
-        </button>
+        />
     );
 }

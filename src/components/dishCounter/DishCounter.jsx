@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Counter } from '../counter/Counter';
 
-const LIMIT = 5;
+const MIN = 0;
+const MAX = 5;
 export const DishCounter = () => {
 
     const [value, setValue] = useState(0);
 
     const increment = () => {
-        if (value >= LIMIT) {
+        if (value >= MAX) {
             return;
         }
         setValue(value + 1);
@@ -22,6 +23,8 @@ export const DishCounter = () => {
 
     return (
         <Counter 
+            min={MIN} 
+            max={MAX}
             value={value} 
             increment={increment} 
             decrement={decrement} 

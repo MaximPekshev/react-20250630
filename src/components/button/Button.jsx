@@ -9,7 +9,7 @@ export const Button = ({
 }) => {
     return (
         <button 
-            className={classNames({ 
+            className={classNames(styles.primaryButton, { 
                 [styles.isDisabled]: isDisabled,
                 [styles.xs]: sizeViewVariant === 'xs',
                 [styles.s]: sizeViewVariant === 's',

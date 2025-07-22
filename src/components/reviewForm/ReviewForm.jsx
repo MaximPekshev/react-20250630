@@ -1,9 +1,7 @@
 import { Counter } from "../counter/Counter";
 import { Button } from "../button/Button";
 import styles from "./reviewForm.module.css";
-import classNames from "classnames";
 import { useForm } from "./useForm";
-
 
 export const ReviewForm = () => {
     const { form, setName, setReview, ratingIncrement, ratingDecrement, clearForm } = useForm();
@@ -11,10 +9,10 @@ export const ReviewForm = () => {
 
     return (
         <form 
-            className={classNames(styles.reviewForm)}
+            className={styles.reviewForm}
             onSubmit={(event) => event.preventDefault()}
         >
-            <div className={classNames(styles.reviewFormData)}>
+            <div className={styles.reviewFormData}>
                 <div>Name</div>
                 <input 
                     value={name} 
@@ -27,7 +25,7 @@ export const ReviewForm = () => {
                     placeholder="Write your review here..."
                     onChange={(event) => setReview(event.target.value)}
                 />
-                <div className={classNames(styles.rating)}>
+                <div className={styles.rating}>
                     <span>Rating:</span>
                     <div>
                         <Counter
@@ -45,16 +43,16 @@ export const ReviewForm = () => {
                         />
                     </div>
                 </div>
-                <div className={classNames(styles.reviewFormButtons)}>
+                <div className={styles.reviewFormButtons}>
                     <Button 
-                        isDisabled={true}
+                        isDisabled
                         children={"Submit"}
                     />
                     <Button 
                         sizeViewVariant="s"
                         children={"Clear"}
                         isDisabled={false}
-                        onClick={() => clearForm()}
+                        onClick={clearForm}
                     />
                 </div>
             </div>

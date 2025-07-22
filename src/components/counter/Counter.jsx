@@ -1,5 +1,3 @@
-import styles from "./counter.module.css";
-import classNames from "classnames";
 import { Button } from "../button/Button";
 export const Counter = ({min=0, max=5,  value, increment, decrement }) => { 
     return (

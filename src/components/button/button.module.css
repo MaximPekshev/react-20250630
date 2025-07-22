@@ -1,4 +1,4 @@
-button {
+.primaryButton {
     margin-left: 5px;
     margin-right: 5px;
     cursor: pointer;
@@ -8,7 +8,7 @@ button {
     background-color: #263238;
     color: #FFFFFF;
 }
-button:hover {
+.primaryButton:hover {
     background-color: #48565d;
 }
 .isDisabled {

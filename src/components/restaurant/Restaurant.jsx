@@ -4,7 +4,7 @@ import styles from "./restaurant.module.css";
 export const Restaurant = ({ name, menu, reviews }) => {
     return (
         <>
-            <h2>{ name }</h2>
+            <h2 className={styles.h2}>{ name }</h2>
             <Menu menu={menu} />
             <Reviews reviews={reviews} />
         </>

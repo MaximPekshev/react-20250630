@@ -3,7 +3,8 @@
 *::after {
   box-sizing: border-box;
 }
-
+ul,
+ol,
 ul[class],
 ol[class] {
   padding: 0;
@@ -33,6 +34,8 @@ body {
   line-height: 1.5;
 }
 
+ul,
+ol,
 ul[class],
 ol[class] {
   list-style: none;

@@ -1,11 +1,12 @@
 import { Restaurant } from "../restaurant/Restaurant";
 import { RestaurantsTabs } from "../restaurantsTabs/RestaurantsTabs";
 import { ReviewForm } from "../reviewForm/ReviewForm";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from "../userContext";
 export const RestaurantsPage = ({ restaurants }) => {
     const [activeRestaurantId, setActiveRestaurant] = useState(restaurants[0].id);
     const activeRestaurant = restaurants?.find(restaurant => restaurant.id === activeRestaurantId)
-    
+    const { user } = useContext(UserContext);
     return (
         <>  
             <RestaurantsTabs 
@@ -18,7 +19,7 @@ export const RestaurantsPage = ({ restaurants }) => {
                 menu={activeRestaurant.menu}
                 reviews={activeRestaurant.reviews}
             />
-            <ReviewForm />
+            { user && <ReviewForm /> }
         </>
     );
 }

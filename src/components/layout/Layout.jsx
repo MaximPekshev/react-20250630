@@ -1,9 +1,10 @@
 import styles from "./layout.module.css";
 import classNames from "classnames";
 import { ProgressBar } from "../progressBar/ProgressBar";
-import { ToggleThemeCheckbox } from "../toggleThemeCheckbox/toggleThemeCheckbox";
+import { ToggleThemeCheckbox } from "../toggleThemeCheckbox/ToggleThemeCheckbox";
 import { ThemeContext } from "../themeContext";
 import { useContext } from "react";
+import { AuthButton } from "../authButton/authButton";
 
 export const Layout = ({ children }) => {
     const { theme } = useContext(ThemeContext);
@@ -15,6 +16,7 @@ export const Layout = ({ children }) => {
                 [styles.light]: theme === 'light',
             })}>
                 <ToggleThemeCheckbox />
+                <AuthButton />
             </div>
             <header className={classNames(styles.header, {
                 [styles.dark]: theme === 'dark',

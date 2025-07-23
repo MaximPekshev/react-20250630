@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../themeContext';
-import { Checkbox } from '../Checkbox/Checkbox';
+import { Checkbox } from '../checkbox/Checkbox';
 
 export const ToggleThemeCheckbox = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);

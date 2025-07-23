@@ -5,3 +5,9 @@
     justify-content: space-between;
     align-items: center;
 }
+.dish.dark {
+    color: #fff;
+}
+.dish.light {
+    color: #000;
+}

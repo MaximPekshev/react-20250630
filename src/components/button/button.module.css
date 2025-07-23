@@ -3,21 +3,25 @@
     margin-right: 5px;
     cursor: pointer;
     border: none;
-    background-color: inherit;
     border-radius: 5px;
+}
+.primaryButton.dark {
+    background-color: #ebebeb;
+    color: #000000;
+}
+.primaryButton.light {
     background-color: #263238;
     color: #FFFFFF;
 }
 .primaryButton:hover {
-    background-color: #48565d;
+    opacity: 0.9;
 }
 .isDisabled {
-    opacity: 0.5;
+    opacity: 0.5 !important;
     cursor: not-allowed;
 }
 .xs {
     padding: 3px 10px;
-
 }
 .s {
     padding: 5px 20px;

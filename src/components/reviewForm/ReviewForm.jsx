@@ -1,15 +1,22 @@
 import { Counter } from "../counter/Counter";
 import { Button } from "../button/Button";
 import styles from "./reviewForm.module.css";
+import classNames from "classnames";
+import { useContext } from "react";
+import { ThemeContext } from "../themeContext";
 import { useForm } from "./useForm";
 
 export const ReviewForm = () => {
     const { form, setName, setReview, ratingIncrement, ratingDecrement, clearForm } = useForm();
     const { name, review, rating } = form;
+    const { theme } = useContext(ThemeContext);
 
     return (
         <form 
-            className={styles.reviewForm}
+            className={classNames(styles.reviewForm, {
+                [styles.dark]: theme === 'dark',
+                [styles.light]: theme === 'light',
+            })}
             onSubmit={(event) => event.preventDefault()}
         >
             <div className={styles.reviewFormData}>

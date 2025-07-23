@@ -1,9 +1,16 @@
+import styles from "./reviews.module.css";
 import classNames from "classnames";
 import { Review } from "../review/Review";
-import styles from "./reviews.module.css";
+import { useContext } from "react";
+import { ThemeContext } from "../themeContext";
+
 export const Reviews = ({ reviews }) => {
+    const { theme } = useContext(ThemeContext);
     return (
-        <div className={styles.reviews}>
+        <div className={classNames(styles.reviews, {
+            [styles.dark]: theme === 'dark',
+            [styles.light]: theme === 'light',
+        })}>
             <h3>Reviews</h3>
             <ul className={classNames(
                 styles.reviewsList, 

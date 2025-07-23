@@ -1,7 +1,5 @@
 import styles from './button.module.css';
 import classNames from 'classnames';
-import { ThemeContext } from '../themeContext';
-import { useContext } from 'react';
 
 export const Button = ({ 
     children, 
@@ -9,7 +7,6 @@ export const Button = ({
     isDisabled,
     sizeViewVariant = 's'
 }) => {
-    const { theme } = useContext(ThemeContext);
     return (
         <button 
             className={classNames(styles.primaryButton, { 
@@ -17,8 +14,6 @@ export const Button = ({
                 [styles.xs]: sizeViewVariant === 'xs',
                 [styles.s]: sizeViewVariant === 's',
                 [styles.l]: sizeViewVariant === 'l',
-                [styles.dark]: theme === 'dark',
-                [styles.light]: theme === 'light',
             })} 
             onClick={onClick} 
             disabled={isDisabled}

@@ -1,20 +1,10 @@
 .reviewsList li {
     margin-bottom: 10px;
 }
-
 .reviews {
     padding: 20px;
     border: solid 1px #ccc;
     border-radius: 8px;
     max-width: 350px;
     margin-bottom: 20px;
-}
-
-.reviews.dark {
-    background-color: #333;
-    color: #fff;
-}
-.reviews.light {
-    background-color: #f5f5f5;
-    color: #000;
 }

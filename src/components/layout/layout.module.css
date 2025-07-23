@@ -6,44 +6,14 @@
     align-items: center;
     border-bottom: #434343 solid 1px;
 }
-.top.dark {
-    background-color: #333;
-    color: #fff;
-}
-.top.light {
-    background-color: #969696;
-}
 .header {
     padding: 40px 20px;
     text-align: center;
 }
-.header.dark {
-    background-color: #333;
-    color: #fff;
-}
-.header.light {
-    background-color: #969696;
-}
-
 .body {
     padding: 40px 20px;
 }
-.body.dark {
-    background-color: #525252;
-}
-.body.light {
-    background-color: #ffffff;
-}
-
 .footer {
     height: 1024px;
     padding: 40px 20px;
-}
-
-.footer.dark {
-    background-color: #333;
-    color: #fff;
-}
-.footer.light {
-    background-color: #969696;
 }

@@ -1,69 +1,64 @@
 import { Counter } from "../counter/Counter";
 import { Button } from "../button/Button";
 import styles from "./reviewForm.module.css";
-import classNames from "classnames";
-import { useContext } from "react";
-import { ThemeContext } from "../themeContext";
 import { useForm } from "./useForm";
+import { ThemeWrapper } from "../themeWrapper/ThemeWrapper";
 
 export const ReviewForm = () => {
     const { form, setName, setReview, ratingIncrement, ratingDecrement, clearForm } = useForm();
     const { name, review, rating } = form;
-    const { theme } = useContext(ThemeContext);
-
     return (
-        <form 
-            className={classNames(styles.reviewForm, {
-                [styles.dark]: theme === 'dark',
-                [styles.light]: theme === 'light',
-            })}
-            onSubmit={(event) => event.preventDefault()}
-        >
-            <div className={styles.reviewFormData}>
-                <div>Name</div>
-                <input 
-                    value={name} 
-                    placeholder="Your name"
-                    onChange={(event) => setName(event.target.value)}
-                />
-                <div>Review</div>
-                <textarea 
-                    value={review} 
-                    placeholder="Write your review here..."
-                    onChange={(event) => setReview(event.target.value)}
-                />
-                <div className={styles.rating}>
-                    <span>Rating:</span>
-                    <div>
-                        <Counter
-                            min={0} 
-                            max={5}
-                            value={rating} 
-                            increment={(event) => {
-                                event.preventDefault();
-                                ratingIncrement(rating);
-                            }} 
-                            decrement={(event) => {
-                                event.preventDefault();
-                                ratingDecrement(rating);
-                            }}
+        <ThemeWrapper>
+            <form 
+                className={styles.reviewForm}
+                onSubmit={(event) => event.preventDefault()}
+            >
+                <div className={styles.reviewFormData}>
+                    <div>Name</div>
+                    <input 
+                        value={name} 
+                        placeholder="Your name"
+                        onChange={(event) => setName(event.target.value)}
+                    />
+                    <div>Review</div>
+                    <textarea 
+                        value={review} 
+                        placeholder="Write your review here..."
+                        onChange={(event) => setReview(event.target.value)}
+                    />
+                    <div className={styles.rating}>
+                        <span>Rating:</span>
+                        <div>
+                            <Counter
+                                min={0} 
+                                max={5}
+                                value={rating} 
+                                increment={(event) => {
+                                    event.preventDefault();
+                                    ratingIncrement(rating);
+                                }} 
+                                decrement={(event) => {
+                                    event.preventDefault();
+                                    ratingDecrement(rating);
+                                }}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.reviewFormButtons}>
+                        <Button 
+                            isDisabled
+                            children={"Submit"}
+                        />
+                        <Button 
+                            sizeViewVariant="s"
+                            children={"Clear"}
+                            isDisabled={false}
+                            onClick={clearForm}
                         />
                     </div>
                 </div>
-                <div className={styles.reviewFormButtons}>
-                    <Button 
-                        isDisabled
-                        children={"Submit"}
-                    />
-                    <Button 
-                        sizeViewVariant="s"
-                        children={"Clear"}
-                        isDisabled={false}
-                        onClick={clearForm}
-                    />
-                </div>
-            </div>
-            
-        </form>
+                
+            </form>
+        </ThemeWrapper>
     );
 }

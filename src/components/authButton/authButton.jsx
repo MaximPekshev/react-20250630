@@ -2,26 +2,18 @@ import { useContext } from 'react';
 import { UserContext } from '../userContext';
 import { Button } from '../button/Button';
 export const AuthButton = () => {
-    const { user, setUser } = useContext(UserContext);
-
-    const handleLogin = () => {
-        setUser({ user: 'Some user' });
-    };
-
-    const handleLogout = () => {
-        setUser(null);
-    };
+    const { user, userLogin, userLogout } = useContext(UserContext);
 
     return user ? (
         <Button
             children={`Logout`}
-            onClick={handleLogout}
+            onClick={userLogout}
             sizeViewVariant='xs'
         />
     ) : (
         <Button
             children={`Login`}
-            onClick={handleLogin}
+            onClick={userLogin}
             sizeViewVariant='xs'
         />
     );

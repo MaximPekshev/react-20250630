@@ -1,0 +1,55 @@
+.dark button {
+    background-color: #ebebeb;
+    color: #000000;
+}
+
+.light button {
+    background-color: #263238;
+    color: #FFFFFF;
+}
+
+.dark div {
+    background-color: #333;
+    color: #fff;
+}
+
+.light div {
+    background-color: #f5f5f5;
+    color: #000;
+}
+
+.dark header {
+    background-color: #202020;
+    color: #fff;
+}
+
+.light header {
+    background-color: #969696;
+    color: #000;
+}
+
+.dark footer {
+    background-color: #202020;
+    color: #fff;
+}
+
+.light footer {
+    background-color: #969696;
+    color: #000;
+}
+
+.dark form {
+    background-color: #333;
+    color: #fff;
+}
+.light form {
+    background-color: #f5f5f5;
+    color: #000;
+}
+
+.dark {
+    color: #fff;
+}
+.light {
+    color: #000;
+}

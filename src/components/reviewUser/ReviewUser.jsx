@@ -6,9 +6,5 @@ export const ReviewUser = ({ userId }) => {
     if (!user) {
         return;
     }
-    return (
-        <>
-            {user.name}
-        </>
-    );
+    return user.name;
 }

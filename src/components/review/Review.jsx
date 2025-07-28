@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectReviewById } from "../../redux/entities/reviews/slice";
-import { selectUserById } from "../../redux/entities/users/slice";
+import { ReviewUser } from "../reviewUser/ReviewUser";
 
 export const Review = ({ id }) => {
     const review = useSelector((state) => selectReviewById(state, id));
@@ -8,10 +8,9 @@ export const Review = ({ id }) => {
         return null;
     }
     const { rating, text, userId } = review;
-    const user = useSelector((state) => selectUserById(state, userId));
     return (
         <>
-            <strong>User:</strong> {user?.name} <br />
+            <strong>User:</strong> <ReviewUser userId={userId} /> <br />
             <strong>Rating:</strong> {rating} ⭐️<br />
             <strong>Comment:</strong> {text}
         </>

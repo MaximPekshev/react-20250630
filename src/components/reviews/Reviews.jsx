@@ -12,9 +12,9 @@ export const Reviews = ({ reviews }) => {
                     styles.reviewsList, 
                     styles.link
                 )}>
-                {reviews.map(review => (
-                    <li key={ review.id }>
-                        <Review review={ review } />
+                {reviews.map(reviewId => (
+                    <li key={ reviewId }>
+                        <Review id={ reviewId } />
                     </li>
                 ))}
                 </ul>

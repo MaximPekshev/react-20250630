@@ -1,31 +1,32 @@
-import { useState } from 'react';
+import { useCallback } from 'react';
 import { Counter } from '../counter/Counter';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    addToCart,
+    removeFromCart,
+    selectAmountByItemId
+} from '../../redux/entities/cart/slice';
 
-const MIN = 0;
-const MAX = 5;
-export const DishCounter = () => {
+export const DishCounter = ({ id }) => {
+    
+    const dispatch = useDispatch();
+    
+    const amount = useSelector((state) => selectAmountByItemId(state, id)) || 0;
 
-    const [value, setValue] = useState(0);
+    const increment = useCallback(
+        () => dispatch(addToCart(id)),
+        [id, dispatch]
+    );
 
-    const increment = () => {
-        if (value >= MAX) {
-            return;
-        }
-        setValue(value + 1);
-    };
-
-    const decrement = () => {
-        if (value <= 0) {
-            return;
-        }
-        setValue(value - 1);
-    };
+    const decrement = useCallback(
+        () => dispatch(removeFromCart(id)),
+        [id, dispatch]
+    );
 
     return (
         <Counter 
-            min={MIN} 
-            max={MAX}
-            value={value} 
+            value={amount} 
+            max={100}
             increment={increment} 
             decrement={decrement} 
         />

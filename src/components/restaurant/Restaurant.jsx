@@ -2,8 +2,12 @@ import { Menu } from "../menu/Menu";
 import { Reviews } from "../reviews/Reviews";
 import styles from "./restaurant.module.css";
 import { ThemeWrapper } from "../themeWrapper/ThemeWrapper";
+import { useSelector } from "react-redux";
+import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
 
-export const Restaurant = ({ name, menu, reviews }) => {
+export const Restaurant = ({ id }) => {
+    const restaurant = useSelector((state) => selectRestaurantById(state, id));
+    const { name, menu, reviews } = restaurant || {};
     return (
         <>
             <ThemeWrapper>

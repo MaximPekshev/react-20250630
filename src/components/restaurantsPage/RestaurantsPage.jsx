@@ -1,25 +1,37 @@
 import { Restaurant } from "../restaurant/Restaurant";
 import { RestaurantsTabs } from "../restaurantsTabs/RestaurantsTabs";
 import { ReviewForm } from "../reviewForm/ReviewForm";
-import { useState, useContext } from 'react';
+import { useState, useContext, act } from 'react';
 import { UserContext } from "../userContext";
-export const RestaurantsPage = ({ restaurants }) => {
-    const [activeRestaurantId, setActiveRestaurant] = useState(restaurants[0].id);
-    const activeRestaurant = restaurants?.find(restaurant => restaurant.id === activeRestaurantId)
+import { useSelector } from "react-redux";
+import { selectRestaurantsIds } from "../../redux/entities/restaurants/slice";
+import { Cart } from "../cart/Cart";
+
+export const RestaurantsPage = () => {
+    const restaurantIds = useSelector(selectRestaurantsIds);
+
+    const [activeRestaurantId, setActiveRestaurant] = useState(restaurantIds?.[0]);
+
+    const handleSetActiveRestaurant = (id) => {
+        if ( activeRestaurantId === id ) {
+            return;
+        }
+        setActiveRestaurant(id);
+    };
+
     const { user } = useContext(UserContext);
     return (
         <>  
             <RestaurantsTabs 
-                restaurants={restaurants} 
-                onClick={setActiveRestaurant} 
+                restaurantIds={restaurantIds} 
+                onClick={handleSetActiveRestaurant} 
                 activeRestaurantId={activeRestaurantId}
             />
             <Restaurant 
-                name={activeRestaurant.name}
-                menu={activeRestaurant.menu}
-                reviews={activeRestaurant.reviews}
+                id={activeRestaurantId}
             />
             { user && <ReviewForm /> }
+            { user && <Cart /> }
         </>
     );
 }

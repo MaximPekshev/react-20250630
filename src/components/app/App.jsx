@@ -1,4 +1,3 @@
-import { restaurants } from '../../materials/mock';
 import { Layout } from '../layout/Layout';
 import { RestaurantsPage } from '../restaurantsPage/RestaurantsPage';
 import { ThemeContextProvider } from '../themeContext/ThemeContext';
@@ -14,7 +13,7 @@ export const App = () => {
             <UserContextProvider>
                 <ThemeContextProvider>
                     <Layout>
-                        <RestaurantsPage restaurants={restaurants} />
+                        <RestaurantsPage />
                     </Layout>
                 </ThemeContextProvider>
             </UserContextProvider>

@@ -2,16 +2,16 @@ import { RestaurantsTab } from "../restaurantsTab/RestaurantsTab";
 import { Fragment } from 'react';
 import { ThemeWrapper } from "../themeWrapper/ThemeWrapper";
 
-export const RestaurantsTabs = ({ onClick, restaurants, activeRestaurantId }) => {
+export const RestaurantsTabs = ({ onClick, restaurantIds, activeRestaurantId }) => {
     return (
         <ThemeWrapper>
-            {restaurants.map(restaurant => (
-                <Fragment key={ restaurant.id }>
+            {restaurantIds.map(id => (
+                <Fragment key={ id }>
                     <RestaurantsTab 
-                        id={restaurant.id} 
-                        title={restaurant.name} 
+                        id={id} 
+                        title={id} 
                         onClick={onClick}
-                        isActive={restaurant.id === activeRestaurantId}
+                        isActive={id === activeRestaurantId}
                     />
                 </Fragment>
             ))}

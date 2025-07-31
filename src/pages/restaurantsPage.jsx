@@ -1,8 +1,16 @@
-import { Restaurants } from "../components/restaurants/Restaurants";
+import { RestaurantsTabs } from "../components/restaurantsTabs/RestaurantsTabs";
+import { Outlet } from "react-router";
+import { useSelector } from "react-redux";
+import { selectRestaurantsIds } from "../redux/entities/restaurants/slice";
+
 export const RestaurantsPage = () => {
+    const restaurantIds = useSelector(selectRestaurantsIds);
     return (
         <>
-            <Restaurants />
+            <RestaurantsTabs 
+                restaurantIds={restaurantIds} 
+            />
+            <Outlet />
         </>
     );
 }

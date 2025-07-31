@@ -3,8 +3,6 @@ import { useParams } from "react-router";
 export const DishPage = () => {
     const { dishId } = useParams();
     return (
-        <>
-            <Dish id={dishId} />
-        </>
+        <Dish id={dishId} />
     );
 }

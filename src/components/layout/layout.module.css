@@ -1,15 +1,3 @@
-.top {
-    height: 40px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: #434343 solid 1px;
-}
-.header {
-    padding: 40px 20px;
-    text-align: center;
-}
 .body {
     padding: 40px 20px;
 }

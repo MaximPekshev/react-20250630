@@ -16,7 +16,6 @@ export const restaurantsSlice = createSlice({
         entityAdapter.setAll(state, payload);
       })
       .addCase(getRestaurantById.fulfilled, (state, { payload }) => {
-        console.log(payload);
         entityAdapter.setOne(state, payload);
       })
 });

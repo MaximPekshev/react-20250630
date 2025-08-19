@@ -4,14 +4,22 @@ import { ThemeWrapper } from "../themeWrapper/ThemeWrapper";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
+import { selectDishesIds } from "../../redux/entities/dishes/slice";
+import { getDishesByRestaurantId } from "../../redux/entities/dishes/getDishesByRestaurantId";
+import { useRequest } from "../../redux/hooks/useRequest";
 
 export const Menu = () => {
     const { restaurantId } = useParams();
-    const restaurant = useSelector((state) => selectRestaurantById(state, restaurantId));
-    if (!restaurant) {
-        return;
+    const requestStatus = useRequest(getDishesByRestaurantId, restaurantId);
+
+    const menu = useSelector((state) => selectDishesIds(state, restaurantId));
+
+    if (!requestStatus === "idle" || requestStatus === "pending") {
+        return <div>Loading...</div>;
     }
-    const { menu } = restaurant || {};
+    if (!menu.length) {
+        return <div>No dishes found for this restaurant</div>;
+    }
 
     return (
         <ThemeWrapper>

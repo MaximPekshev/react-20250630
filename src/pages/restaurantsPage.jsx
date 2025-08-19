@@ -9,7 +9,7 @@ export const RestaurantsPage = () => {
     const restaurantIds = useSelector(selectRestaurantsIds);
     const requestStatus = useRequest(getRestaurants)
 
-    if (requestStatus === 'idle' || requestStatus === 'pending') {
+    if (requestStatus === 'pending') {
         return <div>Loading...</div>;
     }
 

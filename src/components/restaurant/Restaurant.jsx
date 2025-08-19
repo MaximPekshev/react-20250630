@@ -7,12 +7,20 @@ import { TabLink } from "../tabLink/TabLink";
 import { ReviewForm } from "../reviewForm/ReviewForm";
 import { useContext } from 'react';
 import { UserContext } from "../userContext";
+import { useRequest } from "../../redux/hooks/useRequest";
+import { getRestaurantById } from "../../redux/entities/restaurants/getRestaurantById";
 
 export const Restaurant = ({ id }) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, id));
+    const requestStatus = useRequest(getRestaurantById, id);
+
     const { name } = restaurant || {};
     const { user } = useContext(UserContext);
-    
+
+    if (requestStatus === 'idle' || requestStatus === 'pending') {
+        return <div>Loading...</div>;
+    }
+
     return (
         <>
             <ThemeWrapper>

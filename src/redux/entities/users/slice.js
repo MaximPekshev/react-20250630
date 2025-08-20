@@ -1,12 +1,12 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { getUsers } from './getUsers';
-import { IDLE } from "../../redux/constants"
+import { REQUEST_STATUS } from "../../constants"
 
 const entityAdapter = createEntityAdapter();
 
 export const usersSlice = createSlice({
   name: 'users',
-  initialState: entityAdapter.getInitialState({ requestStatus: IDLE }),
+  initialState: entityAdapter.getInitialState({ requestStatus: REQUEST_STATUS.IDLE }),
   selectors: {
     selectRequestStatus: (state) => state.requestStatus,
   },

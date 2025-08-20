@@ -8,7 +8,7 @@ import { getReviewsByRestaurantId } from "../../redux/entities/reviews/getReview
 import { selectReviewIds } from "../../redux/entities/reviews/slice";
 import { useRequest } from "../../redux/hooks/useRequest";
 import { DefaultSkeleton } from "../skeletons/DefaultSkeleton";
-import { IDLE, PENDING } from "../../redux/constants"
+import { REQUEST_STATUS } from "../../redux/constants"
 
 export const Reviews = () => {
     const { restaurantId } = useParams();
@@ -18,7 +18,7 @@ export const Reviews = () => {
     return (
         <ThemeWrapper>
             <div className={styles.reviews}>
-                {requestStatus === IDLE || requestStatus === PENDING ? (
+                {requestStatus === REQUEST_STATUS.IDLE || requestStatus === REQUEST_STATUS.PENDING ? (
                     <>
                         <DefaultSkeleton />
                         <DefaultSkeleton />

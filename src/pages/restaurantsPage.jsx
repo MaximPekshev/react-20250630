@@ -12,7 +12,6 @@ export const RestaurantsPage = () => {
 
     return (
         <>  
-            {/* <TabsSkeleton /> */}
             { requestStatus === 'pending' ? ( 
                 <TabsSkeleton />
             ) : (

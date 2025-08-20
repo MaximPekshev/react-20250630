@@ -9,11 +9,14 @@ import { selectReviewIds } from "../../redux/entities/reviews/slice";
 import { useRequest } from "../../redux/hooks/useRequest";
 import { DefaultSkeleton } from "../skeletons/DefaultSkeleton";
 import { REQUEST_STATUS } from "../../redux/constants"
+import { getUsers } from "../../redux/entities/users/getUsers";
+
 
 export const Reviews = () => {
     const { restaurantId } = useParams();
     const requestStatus = useRequest(getReviewsByRestaurantId, restaurantId);
     const reviews = useSelector((state) => selectReviewIds(state, restaurantId));
+    const usersRequestStatus = useRequest(getUsers);
 
     return (
         <ThemeWrapper>

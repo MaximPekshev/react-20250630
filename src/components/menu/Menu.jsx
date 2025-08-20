@@ -14,25 +14,37 @@ export const Menu = () => {
     const requestStatus = useRequest(getDishesByRestaurantId, restaurantId);
     const menu = useSelector((state) => selectDishesIds(state, restaurantId));
 
+    if (requestStatus === REQUEST_STATUS.IDLE || requestStatus === REQUEST_STATUS.PENDING) {
+        return (
+            <ThemeWrapper>
+                <div className={styles.menu}>
+                    <DefaultSkeleton />
+                </div>
+            </ThemeWrapper>
+        );
+    }
+
+    if (!menu.length) {
+        return (
+            <ThemeWrapper>
+                <div className={styles.menu}>
+                    <div>No dishes found for this restaurant</div>
+                </div>
+            </ThemeWrapper>
+        );
+    }
+
     return (
         <ThemeWrapper>
             <div className={styles.menu}>
-                {requestStatus === REQUEST_STATUS.IDLE || requestStatus === REQUEST_STATUS.PENDING ? (
-                    <DefaultSkeleton />
-                ) : (
-                    !menu.length ? (
-                        <div>No dishes found for this restaurant</div>
-                    ) : (
-                        <ul>
-                            {menu.map(dishId => (
-                                <li key={dishId}>
-                                    <DishLink id={dishId} />
-                            </li>
-                        ))}
-                    </ul>
-                    )
-                )}
-            </div>
+                <ul>
+                    {menu.map(dishId => (
+                        <li key={dishId}>
+                            <DishLink id={dishId} />
+                        </li>
+                    ))}
+                </ul>
+            </div> 
         </ThemeWrapper>
     );
 }

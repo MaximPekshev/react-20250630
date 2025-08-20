@@ -3,7 +3,6 @@ import styles from "./menu.module.css";
 import { ThemeWrapper } from "../themeWrapper/ThemeWrapper";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
 import { selectDishesIds } from "../../redux/entities/dishes/slice";
 import { getDishesByRestaurantId } from "../../redux/entities/dishes/getDishesByRestaurantId";
 import { useRequest } from "../../redux/hooks/useRequest";

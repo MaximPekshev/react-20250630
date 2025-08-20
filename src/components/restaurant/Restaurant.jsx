@@ -9,10 +9,12 @@ import { useContext } from 'react';
 import { UserContext } from "../userContext";
 import { useRequest } from "../../redux/hooks/useRequest";
 import { getRestaurantById } from "../../redux/entities/restaurants/getRestaurantById";
+import { getUsers } from "../../redux/entities/users/getUsers";
 
 export const Restaurant = ({ id }) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, id));
     const requestStatus = useRequest(getRestaurantById, id);
+    const usersRequestStatus = useRequest(getUsers);
 
     const { name } = restaurant || {};
     const { user } = useContext(UserContext);

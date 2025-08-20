@@ -10,6 +10,7 @@ import { UserContext } from "../userContext";
 import { useRequest } from "../../redux/hooks/useRequest";
 import { getRestaurantById } from "../../redux/entities/restaurants/getRestaurantById";
 import { getUsers } from "../../redux/entities/users/getUsers";
+import { H1Skeleton } from "../skeletons/H1Skeletom";
 
 export const Restaurant = ({ id }) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, id));
@@ -19,16 +20,20 @@ export const Restaurant = ({ id }) => {
     const { name } = restaurant || {};
     const { user } = useContext(UserContext);
 
-    if (requestStatus === 'idle' || requestStatus === 'pending') {
-        return <div>Loading...</div>;
-    }
-
     return (
         <>
             <ThemeWrapper>
-                <h2 className={styles.h2}>{ name }</h2>
-                <TabLink to={`/restaurants/${id}/menu`} children={"Menu"} />
-                <TabLink to={`/restaurants/${id}/reviews`} children={"Reviews"} />
+                <h2 className={styles.h2}>
+                { requestStatus === 'idle' || requestStatus === 'pending' ? (
+                    <H1Skeleton />
+                ) : (
+                    <>{ name }</>
+                )}
+                </h2>
+                <>
+                    <TabLink to={`/restaurants/${id}/menu`} children={"Menu"} />
+                    <TabLink to={`/restaurants/${id}/reviews`} children={"Reviews"} />
+                </>
             </ThemeWrapper>
             <Outlet />
             { user && <ReviewForm /> }

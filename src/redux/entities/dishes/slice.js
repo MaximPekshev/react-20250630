@@ -1,12 +1,13 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { getDishesByRestaurantId } from './getDishesByRestaurantId';
 import { getDishById } from './getDishById';
+import { IDLE } from "../../redux/constants"
 
 const entityAdapter = createEntityAdapter();
 
 export const dishesSlice = createSlice({
   name: 'dishes',
-  initialState: entityAdapter.getInitialState({requestStatus: 'idle'}),
+  initialState: entityAdapter.getInitialState({requestStatus: IDLE}),
   selectors: {
     selectRequestStatus: (state) => state.requestStatus,
   },

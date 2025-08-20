@@ -7,6 +7,7 @@ import { selectDishesIds } from "../../redux/entities/dishes/slice";
 import { getDishesByRestaurantId } from "../../redux/entities/dishes/getDishesByRestaurantId";
 import { useRequest } from "../../redux/hooks/useRequest";
 import { DefaultSkeleton } from "../skeletons/DefaultSkeleton";
+import { IDLE, PENDING } from "../../redux/constants"
 
 export const Menu = () => {
     const { restaurantId } = useParams();
@@ -16,7 +17,7 @@ export const Menu = () => {
     return (
         <ThemeWrapper>
             <div className={styles.menu}>
-                {!requestStatus === "idle" || requestStatus === "pending" ? (
+                {requestStatus === IDLE || requestStatus === PENDING ? (
                     <DefaultSkeleton />
                 ) : (
                     !menu.length ? (

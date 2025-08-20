@@ -1,22 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IDLE, PENDING, REJECTED, FULFILLED } from "../../redux/constants"
 
 export const requestSlice = createSlice({
     name: 'request',
     initialState: {},
     selectors: {
-        selectRequestStatus: (state, requestId) => state[requestId] || 'idle',
-        selectIsLoading: (state, requestId) => state[requestId] === 'pending',
+        selectRequestStatus: (state, requestId) => state[requestId] || IDLE,
+        selectIsLoading: (state, requestId) => state[requestId] === PENDING,
     },
     extraReducers: (builder) => {
         builder
             .addMatcher(({ type }) => type.endsWith('pending'), (state, { meta }) => {
-                state[meta.requestId] = 'pending';
+                state[meta.requestId] = PENDING;
             })
             .addMatcher(({ type }) => type.endsWith('rejected'), (state, { meta }) => {
-                state[meta.requestId] = 'rejected';
+                state[meta.requestId] = REJECTED;
             })
             .addMatcher(({ type }) => type.endsWith('fulfilled'), (state, { meta }) => {
-                state[meta.requestId] = 'fulfilled';
+                state[meta.requestId] = FULFILLED;
             });
     }
 });

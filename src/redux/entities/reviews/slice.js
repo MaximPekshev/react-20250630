@@ -1,11 +1,12 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { getReviewsByRestaurantId } from './getReviewsByRestaurantId';
+import { IDLE } from "../../redux/constants"
 
 const entityAdapter = createEntityAdapter();
 
 export const reviewsSlice = createSlice({
   name: 'reviews',
-  initialState: entityAdapter.getInitialState({ requestStatus: 'idle' }),
+  initialState: entityAdapter.getInitialState({ requestStatus: IDLE }),
   selectors: {
     selectRequestStatus: (state) => state.requestStatus,
   },

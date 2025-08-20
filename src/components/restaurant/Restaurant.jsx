@@ -11,6 +11,7 @@ import { useRequest } from "../../redux/hooks/useRequest";
 import { getRestaurantById } from "../../redux/entities/restaurants/getRestaurantById";
 import { getUsers } from "../../redux/entities/users/getUsers";
 import { H1Skeleton } from "../skeletons/H1Skeletom";
+import { IDLE, PENDING } from "../../redux/constants"
 
 export const Restaurant = ({ id }) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, id));
@@ -24,7 +25,7 @@ export const Restaurant = ({ id }) => {
         <>
             <ThemeWrapper>
                 <h2 className={styles.h2}>
-                { requestStatus === 'idle' || requestStatus === 'pending' ? (
+                { requestStatus === IDLE || requestStatus === PENDING ? (
                     <H1Skeleton />
                 ) : (
                     <>{ name }</>

@@ -18,30 +18,40 @@ export const Reviews = () => {
     const reviews = useSelector((state) => selectReviewIds(state, restaurantId));
     const usersRequestStatus = useRequest(getUsers);
 
+    if ( requestStatus === REQUEST_STATUS.IDLE || requestStatus === REQUEST_STATUS.PENDING) {
+        return (
+            <ThemeWrapper>
+                <div className={styles.reviews}>
+                    <DefaultSkeleton />
+                    <DefaultSkeleton />
+                </div>
+            </ThemeWrapper>
+        );
+    }
+
+    if ( !reviews.length ) {
+        return (
+            <ThemeWrapper>
+                <div className={styles.reviews}>
+                    <div>No reviews found for this restaurant</div>
+                </div>
+            </ThemeWrapper>
+        );
+    }
+
     return (
         <ThemeWrapper>
             <div className={styles.reviews}>
-                {requestStatus === REQUEST_STATUS.IDLE || requestStatus === REQUEST_STATUS.PENDING ? (
-                    <>
-                        <DefaultSkeleton />
-                        <DefaultSkeleton />
-                    </>
-                ) : (
-                    !reviews.length ? (
-                        <div>No reviews found for this restaurant</div>
-                    ) : (
-                        <ul className={classNames(
-                            styles.reviewsList, 
-                            styles.link
-                        )}>
-                            {reviews.map(reviewId => (
-                            <li key={ reviewId }>
-                                <Review id={ reviewId } />
-                            </li>
-                        ))}
-                        </ul>
-                    )
-                )}
+                <ul className={classNames(
+                    styles.reviewsList, 
+                    styles.link
+                )}>
+                    {reviews.map(reviewId => (
+                    <li key={ reviewId }>
+                        <Review id={ reviewId } />
+                    </li>
+                ))}
+                </ul>
             </div>
         </ThemeWrapper>
     );

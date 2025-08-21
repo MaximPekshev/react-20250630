@@ -9,27 +9,39 @@ import { useContext } from 'react';
 import { UserContext } from "../userContext";
 import { useRequest } from "../../redux/hooks/useRequest";
 import { getRestaurantById } from "../../redux/entities/restaurants/getRestaurantById";
-import { getUsers } from "../../redux/entities/users/getUsers";
 import { H1Skeleton } from "../skeletons/H1Skeletom";
 import { REQUEST_STATUS } from "../../redux/constants"
 
 export const Restaurant = ({ id }) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, id));
     const requestStatus = useRequest(getRestaurantById, id);
-    const usersRequestStatus = useRequest(getUsers);
 
     const { name } = restaurant || {};
     const { user } = useContext(UserContext);
+
+    if ( requestStatus === REQUEST_STATUS.PENDING || requestStatus === REQUEST_STATUS.PENDING ) {
+        return (
+            <>
+                <ThemeWrapper>
+                    <h2 className={styles.h2}>
+                        <H1Skeleton />
+                    </h2>
+                    <>
+                        <TabLink to={`/restaurants/${id}/menu`} children={"Menu"} />
+                        <TabLink to={`/restaurants/${id}/reviews`} children={"Reviews"} />
+                    </>
+                </ThemeWrapper>
+                <Outlet />
+                { user && <ReviewForm /> }
+            </>
+        )
+    }
 
     return (
         <>
             <ThemeWrapper>
                 <h2 className={styles.h2}>
-                { requestStatus === REQUEST_STATUS.IDLE || requestStatus === REQUEST_STATUS.PENDING ? (
-                    <H1Skeleton />
-                ) : (
-                    <>{ name }</>
-                )}
+                    { name }
                 </h2>
                 <>
                     <TabLink to={`/restaurants/${id}/menu`} children={"Menu"} />

@@ -90,8 +90,29 @@ router.patch("/review/:reviewId", (req, res, next) => {
   reply(res, updatedReview);
 });
 
+router.delete("/review/:restaurantId/:reviewId", (req, res, next) => {
+  const { restaurantId, reviewId } = req.params;
+  let deletedReview;
+
+  if (restaurantId && reviewId) {
+    deletedReview = updateById(reviews)(reviewId, { deleted: true });
+  }
+
+  reply(res, deletedReview);
+});
+
 router.get("/users", (req, res, next) => {
   reply(res, users);
+});
+
+router.get("/users/:userId", (req, res, next) => {
+  const userId = req.params?.userId;
+  let user;
+
+  if (userId) {
+    user = getById(users)(userId);
+  }
+  reply(res, user);
 });
 
 module.exports = router;

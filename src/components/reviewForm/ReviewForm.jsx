@@ -3,22 +3,28 @@ import { Button } from "../button/Button";
 import styles from "./reviewForm.module.css";
 import { useForm } from "./useForm";
 import { ThemeWrapper } from "../themeWrapper/ThemeWrapper";
+import { useGetUserByIdQuery } from "../../redux/services/api";
 
-export const ReviewForm = () => {
-    const { form, setName, setReview, ratingIncrement, ratingDecrement, clearForm } = useForm();
-    const { name, review, rating } = form;
+export const ReviewForm = ( {userId, onSubmit, isLoading }) => {
+    const { form, setReview, ratingIncrement, ratingDecrement, clearForm } = useForm();
+    const { data: user } = useGetUserByIdQuery(userId);
+    const { review, rating } = form;
+
     return (
         <ThemeWrapper>
             <form 
                 className={styles.reviewForm}
-                onSubmit={(event) => event.preventDefault()}
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    onSubmit(form);
+                }}
             >
                 <div className={styles.reviewFormData}>
                     <div>Name</div>
                     <input 
-                        value={name} 
+                        value={user?.name} 
                         placeholder="Your name"
-                        onChange={(event) => setName(event.target.value)}
+                        readOnly
                     />
                     <div>Review</div>
                     <textarea 
@@ -46,14 +52,14 @@ export const ReviewForm = () => {
                     </div>
                     <div className={styles.reviewFormButtons}>
                         <Button 
-                            isDisabled
-                            children={"Submit"}
-                        />
-                        <Button 
                             sizeViewVariant="s"
                             children={"Clear"}
                             isDisabled={false}
                             onClick={clearForm}
+                        />
+                        <Button 
+                            isDisabled={isLoading}
+                            children={"Submit"}
                         />
                     </div>
                 </div>

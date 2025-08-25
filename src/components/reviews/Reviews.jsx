@@ -2,23 +2,15 @@ import styles from "./reviews.module.css";
 import classNames from "classnames";
 import { Review } from "../review/Review";
 import { ThemeWrapper } from "../themeWrapper/ThemeWrapper";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getReviewsByRestaurantId } from "../../redux/entities/reviews/getReviewsByRestaurantId";
-import { selectReviewIds } from "../../redux/entities/reviews/slice";
-import { useRequest } from "../../redux/hooks/useRequest";
 import { DefaultSkeleton } from "../skeletons/DefaultSkeleton";
-import { REQUEST_STATUS } from "../../redux/constants"
-import { getUsers } from "../../redux/entities/users/getUsers";
-
+import { useGetReviewsByRestaurantIdQuery } from "../../redux/services/api";
 
 export const Reviews = () => {
     const { restaurantId } = useParams();
-    const requestStatus = useRequest(getReviewsByRestaurantId, restaurantId);
-    const reviews = useSelector((state) => selectReviewIds(state, restaurantId));
-    const usersRequestStatus = useRequest(getUsers);
-
-    if ( requestStatus === REQUEST_STATUS.IDLE || requestStatus === REQUEST_STATUS.PENDING) {
+    const { data: reviews, isLoading: isLoadingReviews, isFetching: isFetchingReviews } = useGetReviewsByRestaurantIdQuery(restaurantId);
+    
+    if (isLoadingReviews || isFetchingReviews) {
         return (
             <ThemeWrapper>
                 <div className={styles.reviews}>
@@ -46,9 +38,9 @@ export const Reviews = () => {
                     styles.reviewsList, 
                     styles.link
                 )}>
-                    {reviews.map(reviewId => (
-                    <li key={ reviewId }>
-                        <Review id={ reviewId } />
+                    {reviews.map(review => (
+                    <li key={ review.id }>
+                        <Review review={ review } />
                     </li>
                 ))}
                 </ul>

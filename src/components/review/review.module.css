@@ -1,0 +1,10 @@
+.reviewContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviewActions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}

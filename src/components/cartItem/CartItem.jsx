@@ -1,10 +1,9 @@
-import { useSelector } from "react-redux";
-import { selectDishById } from "../../redux/entities/dishes/slice";
 import styles from "./cartItem.module.css";
 import { DishCounter } from "../dishCounter/DishCounter";
+import { useGetDishByIdQuery } from "../../redux/services/api";
 
 export const CartItem = ({ id }) => {
-    const dish = useSelector((state) => selectDishById(state, id));
+    const { data: dish } = useGetDishByIdQuery(id);
 
     if (!dish) {
         return;

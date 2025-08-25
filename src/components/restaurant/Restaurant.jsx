@@ -1,25 +1,33 @@
 import styles from "./restaurant.module.css";
 import { ThemeWrapper } from "../themeWrapper/ThemeWrapper";
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
 import { Outlet } from "react-router";
 import { TabLink } from "../tabLink/TabLink";
 import { ReviewForm } from "../reviewForm/ReviewForm";
 import { useContext } from 'react';
 import { UserContext } from "../userContext";
-import { useRequest } from "../../redux/hooks/useRequest";
-import { getRestaurantById } from "../../redux/entities/restaurants/getRestaurantById";
 import { H1Skeleton } from "../skeletons/H1Skeletom";
-import { REQUEST_STATUS } from "../../redux/constants"
+import { useGetRestaurantByIdQuery } from "../../redux/services/api";
+import { useAddReviewMutation } from "../../redux/services/api";
 
 export const Restaurant = ({ id }) => {
-    const restaurant = useSelector((state) => selectRestaurantById(state, id));
-    const requestStatus = useRequest(getRestaurantById, id);
-
-    const { name } = restaurant || {};
+    const { data: restaurant, isLoading, isFetching } = useGetRestaurantByIdQuery(id);
     const { user } = useContext(UserContext);
 
-    if ( requestStatus === REQUEST_STATUS.PENDING || requestStatus === REQUEST_STATUS.PENDING ) {
+    const [addReview, { isLoading: isAddReviewLoading }] = useAddReviewMutation();
+
+    const handleAddReview = (form) => {
+        addReview({
+            restaurantId: id,
+            review: {
+                rating: form.rating,
+                text: form.review,
+                userId: user.id,
+            },
+        });
+    };
+
+
+    if ( isLoading || isFetching ) {
         return (
             <>
                 <ThemeWrapper>
@@ -32,7 +40,7 @@ export const Restaurant = ({ id }) => {
                     </>
                 </ThemeWrapper>
                 <Outlet />
-                { user && <ReviewForm /> }
+                { user && <ReviewForm userId={user.id} onSubmit={handleAddReview} isLoading={isAddReviewLoading} /> }
             </>
         )
     }
@@ -41,7 +49,7 @@ export const Restaurant = ({ id }) => {
         <>
             <ThemeWrapper>
                 <h2 className={styles.h2}>
-                    { name }
+                    { restaurant.name }
                 </h2>
                 <>
                     <TabLink to={`/restaurants/${id}/menu`} children={"Menu"} />
@@ -49,7 +57,7 @@ export const Restaurant = ({ id }) => {
                 </>
             </ThemeWrapper>
             <Outlet />
-            { user && <ReviewForm /> }
+            { user && <ReviewForm userId={user.id} onSubmit={handleAddReview} isLoading={isAddReviewLoading} /> }
         </>
     );
 }

@@ -1,8 +1,5 @@
-import { selectUserById } from "../../redux/entities/users/slice";
-import { useSelector } from "react-redux";
 
-export const ReviewUser = ({ userId }) => {
-    const user = useSelector((state) => selectUserById(state, userId));
+export const ReviewUser = ({ user }) => {
     if (!user) {
         return;
     }

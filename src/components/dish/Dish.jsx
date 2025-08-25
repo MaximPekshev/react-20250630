@@ -1,22 +1,17 @@
-import { useSelector } from "react-redux";
-import { selectDishById } from "../../redux/entities/dishes/slice";
 import styles from "./dish.module.css";
 import image from "../../materials/image.png";
 import { DishCounter } from "../dishCounter/DishCounter";
 import { useContext } from "react";
 import { UserContext } from "../userContext";
 import { TabLink } from "../tabLink/TabLink";
-import { getDishById } from "../../redux/entities/dishes/getDishById";
-import { useRequest } from "../../redux/hooks/useRequest";
 import { DishPageSkeleton } from "../skeletons/DishPageSkeleton";
-import { REQUEST_STATUS } from "../../redux/constants";
+import { useGetDishByIdQuery } from "../../redux/services/api";
 
 export const Dish = ({ id }) => {
-    const requestStatus = useRequest(getDishById, id);
-    const dish = useSelector((state) => selectDishById(state, id));
+    const { data: dish, isLoading: isLoadingDish, isFetching } = useGetDishByIdQuery(id);
     const { user } = useContext(UserContext);
 
-    if (requestStatus === REQUEST_STATUS.PENDING) {
+    if (isLoadingDish || isFetching) {
         return (
             <>
                 <div className={styles.dish}>

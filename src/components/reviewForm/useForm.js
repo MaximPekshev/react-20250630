@@ -33,7 +33,6 @@ const reducer = (state, action) => {
 
 export const useForm = () => {
     const [form, dispatch] = useReducer(reducer, DEFAULT_STATE);
-    const { name, review, rating } = form;
 
     const setName = (name) => {
         dispatch({ type: SET_NAME_ACTION, payload: name });

@@ -1,26 +1,21 @@
 import { RestaurantsTabs } from "../components/restaurantsTabs/RestaurantsTabs";
 import { Outlet } from "react-router";
-import { useSelector } from "react-redux";
-import { selectRestaurantsIds } from "../redux/entities/restaurants/slice";
-import { getRestaurants } from "../redux/entities/restaurants/getRestaurants";
-import { useRequest } from "../redux/hooks/useRequest";
 import { TabsSkeleton } from "../components/skeletons/TabsSkeleton";
-import { REQUEST_STATUS } from "../redux/constants";
+import { useGetRestaurantsQuery } from "../redux/services/api";
 
 export const RestaurantsPage = () => {
-    const restaurantIds = useSelector(selectRestaurantsIds);
-    const requestStatus = useRequest(getRestaurants);
+    const { data: restaurants, isLoading } = useGetRestaurantsQuery({});
 
-    if ( requestStatus === REQUEST_STATUS.PENDING) {
+    if (isLoading) {
         return (
             <>  
                 <TabsSkeleton />
                 <Outlet />
             </>
-        );
+        ); 
     }
 
-    if ( !restaurantIds.length ) {
+    if ( !restaurants.length ) {
         return (
             <>
                 <div>No restaurants found</div>
@@ -32,7 +27,7 @@ export const RestaurantsPage = () => {
     return (
         <>  
             <RestaurantsTabs 
-                restaurantIds={restaurantIds} 
+                restaurants={restaurants} 
             />
             <Outlet />
         </>

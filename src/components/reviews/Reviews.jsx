@@ -39,10 +39,10 @@ export const Reviews = () => {
                     styles.link
                 )}>
                     {reviews.map(review => (
-                    <li key={ review.id }>
-                        <Review review={ review } />
-                    </li>
-                ))}
+                        <li key={ review.id }>
+                            <Review review={ review } />
+                        </li>
+                    ))}
                 </ul>
             </div>
         </ThemeWrapper>

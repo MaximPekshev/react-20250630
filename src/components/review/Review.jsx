@@ -9,9 +9,6 @@ import styles from "./review.module.css";
 
 export const Review = ({ review }) => {
     const { user: authUser } = useContext(UserContext);
-    if (!review) {
-        return null;
-    }
     const { data: user } = useGetUserByIdQuery(review.userId);
 
     return (
@@ -29,12 +26,6 @@ export const Review = ({ review }) => {
                             sizeViewVariant="xs"
                         />
                     )}
-                    {/* {(authUser?.id  === review.userId) && (
-                        <Button
-                            children={<FontAwesomeIcon icon={faTrash} />}
-                            sizeViewVariant="xs"
-                        />
-                    )}  */}
                 </div>
             </div> 
         </>
